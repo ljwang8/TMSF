@@ -60,6 +60,10 @@ def main():
     args = parser.parse_args()
     utils.get_device(args)
     print(args.gpu_ids)
+    if args.net_G.startswith('MT_'):
+        args.is_TMSF = True
+    else:
+        args.is_TMSF = False
 
     #  checkpoints dir
     args.checkpoint_dir = os.path.join(args.checkpoint_root, args.project_name)

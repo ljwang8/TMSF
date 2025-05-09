@@ -35,23 +35,21 @@ if __name__ == '__main__':
     parser.add_argument('--calculate_flops', default=False, help="Enable multimodal input (jsonA and jsonB)")
     parser.add_argument('--gpu_ids', type=str, default='0', help='gpu ids: e.g. 0  0,1,2, 0,2. use -1 for CPU')
     parser.add_argument('--is_TMSF', default=True)
-
     #选择数据集
     parser.add_argument('--data_name', default='LEVIR', type=str)
-    # parser.add_argument('--data_name', default='LEVIR', type=str)
     # parser.add_argument('--data_name', default='WHUCD', type=str)
     # parser.add_argument('--data_name', default='CDD', type=str)
 
     #设置存放模型文件的目录
     parser.add_argument('--checkpoint_root', default='./checkpoints/LEVIR', type=str)
-    parser.add_argument('--project_name', default='MT_res18_stages4_prefus_damtoken_trans_fuse1_0508', type=str)
+    parser.add_argument('--project_name', default='MT_res18_stages4_prefus_damtoken_trans_fuse1_1119', type=str)
     #选择模型名
-    parser.add_argument('--net_G', default='MT_res18_stages4_prefus_trans_fuse1', type=str,
+    parser.add_argument('--net_G', default='MT_res18_stages4_prefus_damtoken_trans_fuse1', type=str,
                         help=
                              #ours
-                             'MT_res18_stages3_prefus_damtoken_trans_fuse1 | '
+                             'MT_res18_stages4_prefus_damtoken_trans_fuse1 | '
                              #Ablation on DAT-based Transformer
-                             'MT_res18_stages4_prefus_damtoken_trans_fuse1 | MT_res18_stages4_prefus_trans_fuse1| MT_res18_stages4_prefus_damtoken_fuse1'
+                             'MT_res18_stages4_prefus_trans_fuse1| MT_res18_stages4_prefus_damtoken_fuse1'
                              #Ablation on Multiscale Feature Adaptive Fusion Module
                              'MT_res18_stages4_prefus_damtoken_trans_fuse0 | MT_res18_stages4_prefus_damtoken_trans_fuse2 | MT_res18_stages4_prefus_damtoken_trans_fuse3 |MT_res18_stages4_prefus_damtoken_trans_fuse4'
                              #comparison methods
@@ -95,6 +93,10 @@ if __name__ == '__main__':
     args = parser.parse_args()
     utils.get_device(args)
     print(args.gpu_ids)
+    if args.net_G.startswith('MT_'):
+        args.is_TMSF = True
+    else:
+        args.is_TMSF = False
 
     args.checkpoint_dir = os.path.join(args.checkpoint_root, args.project_name)
     os.makedirs(args.checkpoint_dir, exist_ok=True)
@@ -103,5 +105,3 @@ if __name__ == '__main__':
 
     #训练集和验证集
     train(args)
-    #测试集
-    test(args)
