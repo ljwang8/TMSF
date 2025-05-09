@@ -59,7 +59,6 @@ We provide pretrained models trained on three datasets for reproducibility and f
 After downloading, please copy the pretrained models to the following directory:
 ```
 ./checkpoints/{args.data_name}/{args.project_name}/
-
 ```
 Then, simply run test_option.py to perform inference.
 
