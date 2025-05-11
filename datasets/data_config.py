@@ -10,7 +10,7 @@ class DataConfig:
             self.root_dir = r'E:\变化检测\变化检测数据集\LEVIR-CD+\tiles(256)'
         elif data_name == 'CDD':
             self.label_transform = "norm"
-            self.root_dir = r'E:\变化检测\变化检测数据集\CDD-CD\tiles(256)'
+            self.root_dir = r'E:\变化检测\变化检测数据集\CDD\tiles(256)'
         elif data_name == 'WHUCD':
             self.label_transform = "norm"
             self.root_dir = r'E:\变化检测\变化检测数据集\WHU-CD\tiles(256)'

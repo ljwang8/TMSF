@@ -36,13 +36,13 @@ if __name__ == '__main__':
     parser.add_argument('--gpu_ids', type=str, default='0', help='gpu ids: e.g. 0  0,1,2, 0,2. use -1 for CPU')
     parser.add_argument('--is_TMSF', default=True)
     #选择数据集
-    parser.add_argument('--data_name', default='LEVIR', type=str)
+    parser.add_argument('--data_name', default='CDD', type=str)
     # parser.add_argument('--data_name', default='WHUCD', type=str)
     # parser.add_argument('--data_name', default='CDD', type=str)
 
     #设置存放模型文件的目录
-    parser.add_argument('--checkpoint_root', default='./checkpoints/LEVIR', type=str)
-    parser.add_argument('--project_name', default='MT_res18_stages4_prefus_damtoken_trans_fuse1_1119', type=str)
+    parser.add_argument('--checkpoint_root', default='./checkpoints/CDD', type=str)
+    parser.add_argument('--project_name', default='MT_res18_stages4_prefus_damtoken_trans_fuse1_1220_CDD', type=str)
     #选择模型名
     parser.add_argument('--net_G', default='MT_res18_stages4_prefus_damtoken_trans_fuse1', type=str,
                         help=
@@ -58,7 +58,7 @@ if __name__ == '__main__':
                              'BIT_stages4_ed1_dd8_ddm8 | AMT | ChangeFormerV6 | RCTNet'
                         )
     #可视化路径
-    parser.add_argument('--vis_root', default='vis_LEVIR', type=str)
+    parser.add_argument('--vis_root', default='vis_CDD', type=str)
     # parser.add_argument('--vis_root', default='vis_CDD', type=str)
     # parser.add_argument('--vis_root', default='vis_WHUCD', type=str)
 
@@ -105,3 +105,5 @@ if __name__ == '__main__':
 
     #训练集和验证集
     train(args)
+    #测试集
+    test(args)
